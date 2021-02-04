@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_row_background">
+
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:src="@drawable/ic_action_delete" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:layout_toLeftOf="@id/delete_icon"
+            android:text="EXCLUIR"
+            android:textColor="#fff"
+            android:textSize="13dp" />
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/view_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_nome_raca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOME DA RAÇA"
+            android:textStyle="bold"
+            android:textColor="#5A6978"/>
+
+        <TextView
+            android:id="@+id/tv_origem_raca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Cruzamento Industrial  "
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_nome_raca"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/borda_arredondada"
+            android:layout_marginTop="3dp"/>
+    </RelativeLayout>
+</FrameLayout>

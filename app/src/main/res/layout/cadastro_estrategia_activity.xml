@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.com.virtualbovapp.activities.cadastros.CadastroEstrategiaActivity">>
+
+    <LinearLayout
+        android:id="@+id/ll_estrategia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title_nome_estrategia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_nome_estrategia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o nome da estratégia" />
+
+        <TextView
+            android:id="@+id/tv_title_desc_complementar_estrategia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição Complementar"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_desc_complementar_estrategia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a descrição complementar da estratégia" />
+
+        <TextView
+            android:id="@+id/tv_title_tipo_estrategia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Estratégia"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/sp_tipo_estrategia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_animais"
+        android:icon="@drawable/ic_animal"
+        android:title="@string/title_animais" />
+
+    <item
+        android:id="@+id/navigation_financeiro"
+        android:icon="@drawable/ic_financeiro"
+        android:title="@string/title_financeiro" />
+
+    <item
+        android:id="@+id/navigation_nutricao"
+        android:icon="@drawable/ic_nutricao"
+        android:title="@string/title_nutricao" />
+
+    <item
+        android:id="@+id/navigation_simulador"
+        android:icon="@drawable/ic_simulador"
+        android:title="@string/title_simulador" />
+</menu>

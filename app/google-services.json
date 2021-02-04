@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "403057862956",
+    "project_id": "virtualbov-1882e",
+    "storage_bucket": "virtualbov-1882e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403057862956:android:fdd78ed51449c4f8d1a489",
+        "android_client_info": {
+          "package_name": "br.com.virtualbovapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403057862956-6ff84fb6fsf54cm7s3cdfngei15o8kd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.virtualbovapp",
+            "certificate_hash": "054ac52118f0ce292106bdbfc42b1d3ff981926e"
+          }
+        },
+        {
+          "client_id": "403057862956-v4dvsaie419fhbrr9h45ss3qona18t3t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoLWq7kw_nXECo32XgSlj30W8XeRfb1GU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403057862956-v4dvsaie419fhbrr9h45ss3qona18t3t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

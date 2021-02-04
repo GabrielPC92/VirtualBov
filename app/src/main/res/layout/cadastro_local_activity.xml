@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.com.virtualbovapp.activities.cadastros.CadastroLocalActivity">>
+
+    <LinearLayout
+        android:id="@+id/ll_local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title_nome_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_nome_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o nome do local" />
+
+        <TextView
+            android:id="@+id/tv_title_desc_complementar_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição Complementar"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_desc_complementar_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a descrição complementar do local" />
+
+        <TextView
+            android:id="@+id/tv_title_capacidade_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capacidade"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_capacidade_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Digite a capacidade do local" />
+    </LinearLayout>
+</RelativeLayout>

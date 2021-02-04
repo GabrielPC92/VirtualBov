@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.com.virtualbovapp.activities.cadastros.CadastroLoteActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_lote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title_nome_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_nome_lote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o nome do lote" />
+
+        <TextView
+            android:id="@+id/tv_title_desc_complementar_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição Complementar"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_desc_complementar_lote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a descrição complementar do lote" />
+
+        <TextView
+            android:id="@+id/tv_title_tipo_animais_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Animais"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/sp_tipo_animais_lote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_title_periodo_permanencia_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Período de Permanência no Lote"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_periodo_permanencia_lote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Dia(s) ou Mês(es)" />
+
+            <Spinner
+                android:id="@+id/sp_tipo_periodo_lote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title_estrategia_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estratégia"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_estrategia_lote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Selecione a estratégia do lote" />
+
+            <ImageButton
+                android:id="@+id/ib_pesquisa_estrategia_lote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_search"
+                android:background="@android:color/transparent"
+                app:tint="#FF6D00"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title_local_lote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_local_lote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Selecione o local que abrigará o lote" />
+
+            <ImageButton
+                android:id="@+id/ib_pesquisa_local_lote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_search"
+                android:background="@android:color/transparent"
+                app:tint="#FF6D00"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

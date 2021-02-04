@@ -1,0 +1,345 @@
+{
+  "-MRVcrCX_99yzyvK86Xi" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCX_99yzyvK86Xi",
+    "nome_raca" : "ABERDEEN ANGUS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCapqeEEJt4BV0V" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCapqeEEJt4BV0V",
+    "nome_raca" : "AYRSHIRE",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCapqeEEJt4BV0W" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCapqeEEJt4BV0W",
+    "nome_raca" : "BLOND D AQUITAINE",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCb4tl35boqMkom" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCb4tl35boqMkom",
+    "nome_raca" : "BRAHMAN",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCcEjDGokkcb3tp" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCcEjDGokkcb3tp",
+    "nome_raca" : "BUBALINO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCcEjDGokkcb3tq" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCcEjDGokkcb3tq",
+    "nome_raca" : "CANCHIM",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCdt0qT3EYrDMG5" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCdt0qT3EYrDMG5",
+    "nome_raca" : "CARACU",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCdt0qT3EYrDMG6" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCdt0qT3EYrDMG6",
+    "nome_raca" : "CHAROLÊS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCeyBvZneuM31C0" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCeyBvZneuM31C0",
+    "nome_raca" : "CHIANINA",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCf6bShE_viWR0j" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCf6bShE_viWR0j",
+    "nome_raca" : "CRIOULO LAGEANO",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCgknUmvUFmaZ9E" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCgknUmvUFmaZ9E",
+    "nome_raca" : "DEVON",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCgknUmvUFmaZ9F" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCgknUmvUFmaZ9F",
+    "nome_raca" : "FRISIA",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrChO_bfgd5Xwjuh" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrChO_bfgd5Xwjuh",
+    "nome_raca" : "GELBVIEH",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCiveLlSbvL3_Y0" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCiveLlSbvL3_Y0",
+    "nome_raca" : "GIR",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCiveLlSbvL3_Y1" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCiveLlSbvL3_Y1",
+    "nome_raca" : "GIROLANDO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCj3Lzyh7rDk1VR" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCj3Lzyh7rDk1VR",
+    "nome_raca" : "GUZOLANDO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCkAlwphiYXXN7F" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCkAlwphiYXXN7F",
+    "nome_raca" : "GUZONEL",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCkAlwphiYXXN7G" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCkAlwphiYXXN7G",
+    "nome_raca" : "HARIANA",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrClqJrBZwEhTwLf" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrClqJrBZwEhTwLf",
+    "nome_raca" : "HEREFORD",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCmIKUmNQ1GivlL" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCmIKUmNQ1GivlL",
+    "nome_raca" : "HOLANDÊS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCmIKUmNQ1GivlM" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCmIKUmNQ1GivlM",
+    "nome_raca" : "HOLSTEIN",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCnoR1xw5SwlkfH" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCnoR1xw5SwlkfH",
+    "nome_raca" : "INDUBRASIL",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCnoR1xw5SwlkfI" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCnoR1xw5SwlkfI",
+    "nome_raca" : "JERSEY",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCoO2evN4A4zY56" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCoO2evN4A4zY56",
+    "nome_raca" : "JERSOLANDO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCpH-bg3_EKFT2i" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCpH-bg3_EKFT2i",
+    "nome_raca" : "LIMOUSIN",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCqaTsmP_OZ9vue" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCqaTsmP_OZ9vue",
+    "nome_raca" : "MARCHIGIANA",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCqaTsmP_OZ9vuf" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCqaTsmP_OZ9vuf",
+    "nome_raca" : "MESTIÇO",
+    "origem_raca" : 3,
+    "padrao_raca" : true
+  },
+  "-MRVcrCr2woTfkOQrSvI" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCr2woTfkOQrSvI",
+    "nome_raca" : "MOCHO NACIONAL",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCszzstVaZiNKTq" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCszzstVaZiNKTq",
+    "nome_raca" : "NELOGIR",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCszzstVaZiNKTr" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCszzstVaZiNKTr",
+    "nome_raca" : "NELORE",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCszzstVaZiNKTs" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCszzstVaZiNKTs",
+    "nome_raca" : "NELORANDO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCttZODSuYSCB92" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCttZODSuYSCB92",
+    "nome_raca" : "NGUNI",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCttZODSuYSCB93" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCttZODSuYSCB93",
+    "nome_raca" : "NORMANDOS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCuvH1MhH1n02o7" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCuvH1MhH1n02o7",
+    "nome_raca" : "OUTRO",
+    "origem_raca" : 3,
+    "padrao_raca" : true
+  },
+  "-MRVcrCvT-vKb-Jy4RSu" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCvT-vKb-Jy4RSu",
+    "nome_raca" : "PANTANEIRO",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCvT-vKb-Jy4RSv" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCvT-vKb-Jy4RSv",
+    "nome_raca" : "PARDO HOLANDÊS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCwZEQd_lod_MVS" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCwZEQd_lod_MVS",
+    "nome_raca" : "PARDO SUIÇO",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCxbsaDAF3noQEp" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCxbsaDAF3noQEp",
+    "nome_raca" : "PIEMONTÊS",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrCxbsaDAF3noQEq" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCxbsaDAF3noQEq",
+    "nome_raca" : "PITANGUEIRAS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCyVXve-gOhiCo6" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCyVXve-gOhiCo6",
+    "nome_raca" : "PURUNÃ",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCz69vHGdC0TSxz" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCz69vHGdC0TSxz",
+    "nome_raca" : "RED ANGUS",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrCz69vHGdC0TSy-" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrCz69vHGdC0TSy-",
+    "nome_raca" : "SENEPOL",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrD-uVL4B3a3bQ8X" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD-uVL4B3a3bQ8X",
+    "nome_raca" : "SHORTHORN",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrD0GKarVFpfRU-i" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD0GKarVFpfRU-i",
+    "nome_raca" : "SINDOLANDO",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrD0GKarVFpfRU-j" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD0GKarVFpfRU-j",
+    "nome_raca" : "SINJER",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrD1veB-UXHCBLSu" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD1veB-UXHCBLSu",
+    "nome_raca" : "SIMBRAS",
+    "origem_raca" : 2,
+    "padrao_raca" : true
+  },
+  "-MRVcrD21_nBp9pBAg1D" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD21_nBp9pBAg1D",
+    "nome_raca" : "SIMENTAL",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrD21_nBp9pBAg1E" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD21_nBp9pBAg1E",
+    "nome_raca" : "SINDI",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  },
+  "-MRVcrD3vm14--QrIE3G" : {
+    "id_raca" : 0,
+    "key_raca" : "-MRVcrD3vm14--QrIE3G",
+    "nome_raca" : "TABAPUÃ",
+    "origem_raca" : 1,
+    "padrao_raca" : true
+  }
+}

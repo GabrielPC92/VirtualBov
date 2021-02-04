@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/ll_lote_vacina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title_numero_lote_vacina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número do Lote"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ed_numero_lote_vacina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o número do lote" />
+
+        <TextView
+            android:id="@+id/tv_title_data_fabricacao_lote_vacina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data de Fabricação"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_data_fabricacao_lote_vacina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Selecione a data" />
+
+            <ImageButton
+                android:id="@+id/ib_data_fabricacao_lote_vacina"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_date_range"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title_data_validade_lote_vacina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data de Validade"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_data_validade_lote_vacina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Selecione a data" />
+
+            <ImageButton
+                android:id="@+id/ib_data_validade_lote_vacina"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_date_range"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_confirmar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Confirmar" />
+    </LinearLayout>
+
+</RelativeLayout>
