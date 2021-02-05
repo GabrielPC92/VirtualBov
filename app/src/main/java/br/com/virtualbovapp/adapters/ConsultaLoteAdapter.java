@@ -1,7 +1,6 @@
 package br.com.virtualbovapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,10 @@ import br.com.virtualbovapp.model.Lote;
 import br.com.virtualbovapp.R;
 
 public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapter.LoteViewHolder> implements Filterable {
-	private ArrayList<Lote> lotesList;
+	private final ArrayList<Lote> lotesList;
 	private List<Lote> lotesListFiltered;
-	private Intent intent;
-	private LotesAdapterListener listener;
-	private Context context;
+	private final LotesAdapterListener listener;
+	private final Context context;
 
 	public ConsultaLoteAdapter(ArrayList<Lote> lotes, LotesAdapterListener listener, Context context) {
 		this.lotesList = lotes;
@@ -30,6 +29,7 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 		this.context = context;
 	}
 
+	@NonNull
 	@Override
 	public LoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_lote, parent, false);
@@ -49,7 +49,6 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 
 		switch (lotesListFiltered.get(position).getTipo_animais_lote()) {
 			case 1:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
@@ -57,7 +56,6 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 
 				break;
 			case 2:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
@@ -65,7 +63,6 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 
 				break;
 			case 3:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_female, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_female);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_female));
 
@@ -73,17 +70,14 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 
 				break;
 			case 4:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_female, 20, 20));
 				holder.iv_sex02.setImageResource(R.drawable.ic_female);
 				holder.iv_sex02.setColorFilter(context.getResources().getColor(R.color.sex_female));
 
 				break;
 			case 5:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
@@ -91,21 +85,17 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 
 				break;
 			case 6:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_female, 20, 20));
 				holder.iv_sex02.setImageResource(R.drawable.ic_female);
 				holder.iv_sex02.setColorFilter(context.getResources().getColor(R.color.sex_female));
 
 				break;
 			case 7:
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_male, 20, 20));
 				holder.iv_sex01.setImageResource(R.drawable.ic_male);
 				holder.iv_sex01.setColorFilter(context.getResources().getColor(R.color.sex_male));
 
-				//holder.iv_sex01.setImageBitmap(decodeSampledBitmapFromResource(activity.getResources(), R.drawable.ic_female, 20, 20));
 				holder.iv_sex02.setImageResource(R.drawable.ic_female);
 				holder.iv_sex02.setColorFilter(context.getResources().getColor(R.color.sex_female));
 
@@ -161,12 +151,6 @@ public class ConsultaLoteAdapter extends RecyclerView.Adapter<ConsultaLoteAdapte
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Lote> newlist) {
-		lotesList = newlist;
-		lotesListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

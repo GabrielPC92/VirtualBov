@@ -7,6 +7,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,9 @@ import br.com.virtualbovapp.model.Estrategia;
 import br.com.virtualbovapp.R;
 
 public class ConsultaEstrategiaAdapter extends RecyclerView.Adapter<ConsultaEstrategiaAdapter.EstrategiaViewHolder> implements Filterable {
-	private ArrayList<Estrategia> estrategiasList;
+	private final ArrayList<Estrategia> estrategiasList;
 	private List<Estrategia> estrategiasListFiltered;
-	private EstrategiasAdapterListener listener;
+	private final EstrategiasAdapterListener listener;
 
 	public ConsultaEstrategiaAdapter(ArrayList<Estrategia> estrategias, EstrategiasAdapterListener listener) {
 		this.estrategiasList = estrategias;
@@ -25,6 +27,7 @@ public class ConsultaEstrategiaAdapter extends RecyclerView.Adapter<ConsultaEstr
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public EstrategiaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_estrategia, parent, false);
@@ -76,12 +79,6 @@ public class ConsultaEstrategiaAdapter extends RecyclerView.Adapter<ConsultaEstr
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Estrategia> newlist) {
-		estrategiasList = newlist;
-		estrategiasListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package br.com.virtualbovapp.adapters;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +7,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +15,9 @@ import br.com.virtualbovapp.R;
 import br.com.virtualbovapp.model.Raca;
 
 public class ConsultaRacaAdapter extends RecyclerView.Adapter<ConsultaRacaAdapter.RacaViewHolder> implements Filterable {
-	private ArrayList<Raca> racasList;
+	private final ArrayList<Raca> racasList;
 	private List<Raca> racasListFiltered;
-	private Activity activity;
-	private Intent intent;
-	private RacasAdapterListener listener;
+	private final RacasAdapterListener listener;
 
 	public ConsultaRacaAdapter(ArrayList<Raca> racas, RacasAdapterListener listener) {
 		this.racasList = racas;
@@ -28,6 +25,7 @@ public class ConsultaRacaAdapter extends RecyclerView.Adapter<ConsultaRacaAdapte
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public RacaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_raca, parent, false);
@@ -77,12 +75,6 @@ public class ConsultaRacaAdapter extends RecyclerView.Adapter<ConsultaRacaAdapte
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Raca> newlist) {
-		racasList = newlist;
-		racasListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

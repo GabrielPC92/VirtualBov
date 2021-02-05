@@ -5,22 +5,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.model.Lote_Vacina;
 import br.com.virtualbovapp.R;
 
 public class ConsultaLoteVacinaAdapter extends RecyclerView.Adapter<ConsultaLoteVacinaAdapter.LoteVacinaViewHolder> {
-	private ArrayList<Lote_Vacina> lotes_vacinasList;
-	private VacinasAdapterListener listener;
+	private final ArrayList<Lote_Vacina> lotes_vacinasList;
+	private final VacinasAdapterListener listener;
 
 	public ConsultaLoteVacinaAdapter(ArrayList<Lote_Vacina> lote_vacinas, VacinasAdapterListener listener) {
 		this.lotes_vacinasList = lote_vacinas;
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public LoteVacinaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_lote_vacina, parent, false);
@@ -72,11 +73,6 @@ public class ConsultaLoteVacinaAdapter extends RecyclerView.Adapter<ConsultaLote
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Lote_Vacina> newlist) {
-		lotes_vacinasList = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	public interface VacinasAdapterListener {

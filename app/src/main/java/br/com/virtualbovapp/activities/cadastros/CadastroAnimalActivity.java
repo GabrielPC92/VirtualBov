@@ -1,53 +1,50 @@
 package br.com.virtualbovapp.activities.cadastros;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import br.com.virtualbovapp.R;
-import br.com.virtualbovapp.model.OrigemRaca;
-import br.com.virtualbovapp.model.Raca;
+import br.com.virtualbovapp.model.Animal;
 
 public class CadastroAnimalActivity extends AppCompatActivity {
-    private EditText ed_nome_raca;
-    private Spinner sp_origem_raca;
+    private EditText ed_brinco_animal, ed_data_nascimento_animal;
+    //private ChipGroup cg_sexo_animal;
+    private ImageButton ib_data_nascimento_animal;
     private String _modo;
-    private Raca _raca;
-    private int origem_raca;
-    private ArrayAdapter<OrigemRaca> origemRacaAdapter;
-    private static String ROOT = "BD";
-    private static String CHILDREN = "raca";
+    private Animal _animal;
+    private int mYear, mMonth, mDay;
+    private static final String ROOT = "BD";
+    private static final String CHILDREN = "animal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //carregaParametros();
+        carregaParametros();
 
         carregaView();
 
-        /*personalizaView();
-
-        setSpinnerOrigemRaca();
+        personalizaView();
 
         if (_modo.equals("UPD"))
-            preencheCampos(_raca);
+            preencheCampos(_animal);
 
-        selecaoSpinnerOrigemRaca();*/
+        selecaoDatas();
     }
 
     private void carregaParametros()
@@ -55,68 +52,71 @@ public class CadastroAnimalActivity extends AppCompatActivity {
         if(getIntent().hasExtra("_modo"))
             _modo =   getIntent().getStringExtra("_modo");
 
-        if(getIntent().hasExtra("_raca"))
-            _raca =   getIntent().getParcelableExtra("_raca");
+        if(getIntent().hasExtra("_animal"))
+            _animal =   getIntent().getParcelableExtra("_animal");
     }
 
     private void carregaView()
     {
         setContentView(R.layout.cadastro_animal_activity);
 
-        /*ed_nome_raca = findViewById(R.id.ed_nome_raca);
-        sp_origem_raca = findViewById(R.id.sp_origem_raca);*/
+        ed_brinco_animal = findViewById(R.id.ed_brinco_animal);
+        ed_data_nascimento_animal = findViewById(R.id.ed_data_nascimento_animal);
+        ib_data_nascimento_animal = findViewById(R.id.ib_data_nascimento_animal);
+        //cg_sexo_animal = findViewById(R.id.cg_sexo_animal);
     }
 
     private void personalizaView()
     {
-        ed_nome_raca.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        ed_brinco_animal.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        ed_data_nascimento_animal.setEnabled(false);
 
-        if (_modo.equals("UPD")) {
-            if (_raca.isPadrao_raca()) {
-                ed_nome_raca.setEnabled(false);
-                sp_origem_raca.setEnabled(false);
-            }
-        }
+        if(_modo.equals("UPD"))
+            ed_brinco_animal.setEnabled(false);
     }
 
-    private void setSpinnerOrigemRaca() {
-        ArrayList<OrigemRaca> origemRacaList = new ArrayList<>();
-
-        origemRacaList.add(new OrigemRaca(0, "Selecione"));
-        origemRacaList.add(new OrigemRaca(1, "Puro de Origem"));
-        origemRacaList.add(new OrigemRaca(2, "Cruzamento Industrial"));
-        origemRacaList.add(new OrigemRaca(3, "Sem Raça Definida"));
-
-        origemRacaAdapter = new ArrayAdapter<OrigemRaca>(this, android.R.layout.simple_spinner_dropdown_item, origemRacaList);
-        sp_origem_raca.setAdapter(origemRacaAdapter);
-    }
-
-    private void preencheCampos(Raca r)
+    private void preencheCampos(Animal animal)
     {
-        ed_nome_raca.setText(r.getNome_raca());
-
-        for(int i = 0; i < origemRacaAdapter.getCount(); i++) {
-            OrigemRaca origemRaca = origemRacaAdapter.getItem(i);
-
-            if(origemRaca.getId_origem() == r.getOrigem_raca()) {
-                origem_raca = origemRaca.getId_origem();
-                sp_origem_raca.setSelection(i);
-                break;
-            }
-        }
+        ed_brinco_animal.setText(animal.getBrinco_animal());
+        ed_data_nascimento_animal.setText(animal.getData_nascimento_animal());
     }
 
-    private void selecaoSpinnerOrigemRaca()
-    {
-        sp_origem_raca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    private void selecaoDatas() {
+        ib_data_nascimento_animal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                OrigemRaca origemRacaSelecionada = (OrigemRaca) parent.getItemAtPosition(position);
-                origem_raca = origemRacaSelecionada.getId_origem();
-            }
+            public void onClick(View v) {
+                if (_modo.equals("INS")) {
+                    final Calendar c = Calendar.getInstance();
+                    mYear = c.get(Calendar.YEAR);
+                    mMonth = c.get(Calendar.MONTH);
+                    mDay = c.get(Calendar.DAY_OF_MONTH);
+                } else {
+                    mDay = Integer.parseInt(ed_data_nascimento_animal.getText().toString().substring(0, 2));
+                    mMonth = Integer.parseInt(ed_data_nascimento_animal.getText().toString().substring(3, 5)) - 1;
+                    mYear = Integer.parseInt(ed_data_nascimento_animal.getText().toString().substring(6, 10));
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroAnimalActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        String dia, mes, dataCompleta;
+
+                        if (dayOfMonth < 10)
+                            dia = "0" + dayOfMonth;
+                        else
+                            dia = String.valueOf(dayOfMonth);
+
+                        if (monthOfYear + 1 < 10)
+                            mes = "0" + (monthOfYear + 1);
+                        else
+                            mes = String.valueOf(monthOfYear + 1);
+
+                        dataCompleta = dia + "/" + mes + "/" + year;
+                        ed_data_nascimento_animal.setText(dataCompleta);
+                    }
+                }, mYear, mMonth, mDay);
+
+                datePickerDialog.show();
             }
         });
     }
@@ -125,14 +125,29 @@ public class CadastroAnimalActivity extends AppCompatActivity {
     {
         boolean validacao = false;
 
-        if (ed_nome_raca.getText().length() == 0)
-            ed_nome_raca.setError("Informe o nome da raça!");
-        else
-        {
-            if (origem_raca == 0)
-                Toast.makeText(getBaseContext(), "Selecione a origem da raça!", Toast.LENGTH_LONG).show();
-            else
-                validacao = true;
+        if (ed_brinco_animal.getText().length() == 0)
+            ed_brinco_animal.setError("Informe o brinco do animal!");
+        else {
+            if (ed_data_nascimento_animal.getText().length() == 0)
+                ed_data_nascimento_animal.setError("Informe a data de nascimento do animal!");
+            else {
+                String strDataNascimento;
+                String strDataHoje;
+                Date dataFabricacao;
+                Date dataHoje;
+                Calendar c = Calendar.getInstance();
+
+                strDataNascimento = ed_data_nascimento_animal.getText().toString();
+                strDataHoje = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR);
+
+                dataFabricacao = stringToDate(strDataNascimento);
+                dataHoje = stringToDate(strDataHoje);
+
+                if (dataFabricacao.compareTo(dataHoje) > 0)
+                    ed_data_nascimento_animal.setError("Data de nascimento deve ser menor ou igual a data de hoje!");
+                else
+                    validacao = true;
+            }
         }
 
         return validacao;
@@ -143,15 +158,15 @@ public class CadastroAnimalActivity extends AppCompatActivity {
         try {
             FirebaseDatabase firebaseDatabase   =   FirebaseDatabase.getInstance();
             DatabaseReference databaseReference =   firebaseDatabase.getReference().child(ROOT).child(CHILDREN);
-            String key_raca = databaseReference.push().getKey();
+            String key_animal = databaseReference.push().getKey();
 
-            Raca raca = new Raca();
-            raca.setNome_raca(ed_nome_raca.getText().toString());
-            raca.setOrigem_raca(origem_raca);
-            raca.setKey_raca(key_raca);
-            raca.setPadrao_raca(false);
+            Animal animal = new Animal();
+            animal.setBrinco_animal(ed_brinco_animal.getText().toString());
+            animal.setData_nascimento_animal(ed_data_nascimento_animal.getText().toString());
+            animal.setKey_animal(key_animal);
 
-            databaseReference.child(key_raca).setValue(raca);
+            assert key_animal != null;
+            databaseReference.child(key_animal).setValue(animal);
 
             finish();
         }
@@ -160,24 +175,38 @@ public class CadastroAnimalActivity extends AppCompatActivity {
         }
     }
 
-    private void alteraCadastroFirebase(String key_raca)
+    private void alteraCadastroFirebase(String key_animal)
     {
         try {
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference().child(ROOT).child(CHILDREN).child(key_raca);
+            DatabaseReference databaseReference = firebaseDatabase.getReference().child(ROOT).child(CHILDREN).child(key_animal);
 
-            Raca raca = new Raca();
-            raca.setNome_raca(ed_nome_raca.getText().toString());
-            raca.setOrigem_raca(origem_raca);
-            raca.setKey_raca(key_raca);
-            raca.setPadrao_raca(false);
+            Animal animal = new Animal();
+            animal.setBrinco_animal(ed_brinco_animal.getText().toString());
+            animal.setData_nascimento_animal(ed_data_nascimento_animal.getText().toString());
+            animal.setKey_animal(key_animal);
 
-            databaseReference.setValue(raca);
+            databaseReference.setValue(animal);
 
             finish();
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "Erro ao atualizar o cadastro. Tente novamente!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public Date stringToDate(String dataStr)
+    {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        try
+        {
+            return formatter.parse(dataStr);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -198,7 +227,7 @@ public class CadastroAnimalActivity extends AppCompatActivity {
                 if (_modo.equals("INS"))
                     criaCadastroFirebase();
                 else
-                    alteraCadastroFirebase(_raca.getKey_raca());
+                    alteraCadastroFirebase(_animal.getKey_animal());
             }
 
             return true;

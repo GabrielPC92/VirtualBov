@@ -26,8 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
-
-import br.com.virtualbovapp.activities.cadastros.CadastroLocalActivity;
 import br.com.virtualbovapp.activities.cadastros.CadastroLoteActivity;
 import br.com.virtualbovapp.model.Lote;
 import br.com.virtualbovapp.adapters.ConsultaLoteAdapter;
@@ -37,20 +35,17 @@ import br.com.virtualbovapp.helpers.RVEmptyObserver;
 
 public class ConsultaCadastroLoteActivity extends AppCompatActivity implements LoteItemTouchHelper.RecyclerItemTouchHelperListener, ConsultaLoteAdapter.LotesAdapterListener {
     private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
     private ConsultaLoteAdapter lotesAdapter;
     private Intent intent;
     private FloatingActionButton fab_novo;
     private SearchView searchView;
-    private AlertDialog alerta;
     private ItemTouchHelper itemTouchHelper;
-    private ItemTouchHelper.SimpleCallback itemTouchHelperCallback;
     private TextView tv_title_empty;
     private ArrayList<Lote> lotes;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
-    private static String ROOT = "BD";
-    private static String CHILDREN = "lote";
+    private static final String ROOT = "BD";
+    private static final String CHILDREN = "lote";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,11 +75,11 @@ public class ConsultaCadastroLoteActivity extends AppCompatActivity implements L
     {
         tv_title_empty.setText("Não temos nenhum lote cadastrado");
 
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        
-        itemTouchHelperCallback = new LoteItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new LoteItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
@@ -207,6 +202,7 @@ public class ConsultaCadastroLoteActivity extends AppCompatActivity implements L
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
+        assert searchManager != null;
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -288,7 +284,7 @@ public class ConsultaCadastroLoteActivity extends AppCompatActivity implements L
                 }
             });
 
-            alerta = builder.create();
+            AlertDialog alerta = builder.create();
             alerta.show();
             alerta.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override

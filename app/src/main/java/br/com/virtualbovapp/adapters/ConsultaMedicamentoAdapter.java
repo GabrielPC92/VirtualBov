@@ -7,17 +7,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.model.Medicamento;
 import br.com.virtualbovapp.R;
 
 public class ConsultaMedicamentoAdapter extends RecyclerView.Adapter<ConsultaMedicamentoAdapter.MedicamentoViewHolder> implements Filterable {
-	private ArrayList<Medicamento> medicamentosList;
+	private final ArrayList<Medicamento> medicamentosList;
 	private List<Medicamento> medicamentosListFiltered;
-	private MedicamentosAdapterListener listener;
+	private final MedicamentosAdapterListener listener;
 
 	public ConsultaMedicamentoAdapter(ArrayList<Medicamento> medicamentos, MedicamentosAdapterListener listener) {
 		this.medicamentosList = medicamentos;
@@ -25,6 +25,7 @@ public class ConsultaMedicamentoAdapter extends RecyclerView.Adapter<ConsultaMed
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public MedicamentoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_medicamento, parent, false);
@@ -59,7 +60,7 @@ public class ConsultaMedicamentoAdapter extends RecyclerView.Adapter<ConsultaMed
 	}
 
 	public class MedicamentoViewHolder extends RecyclerView.ViewHolder {
-		TextView tv_nome_medicamento, tv_desc_complementar_medicamento, tv_capacidade_medicamento;
+		TextView tv_nome_medicamento, tv_desc_complementar_medicamento;
 		RelativeLayout viewBackground;
         public RelativeLayout viewForeground;
 
@@ -77,12 +78,6 @@ public class ConsultaMedicamentoAdapter extends RecyclerView.Adapter<ConsultaMed
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Medicamento> newlist) {
-		medicamentosList = newlist;
-		medicamentosListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

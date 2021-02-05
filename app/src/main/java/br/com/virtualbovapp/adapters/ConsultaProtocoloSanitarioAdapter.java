@@ -7,17 +7,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.model.ProtocoloSanitario;
 import br.com.virtualbovapp.R;
 
 public class ConsultaProtocoloSanitarioAdapter extends RecyclerView.Adapter<ConsultaProtocoloSanitarioAdapter.ProtocoloSanitarioViewHolder> implements Filterable {
-	private ArrayList<ProtocoloSanitario> protocolosSanitariosList;
+	private final ArrayList<ProtocoloSanitario> protocolosSanitariosList;
 	private List<ProtocoloSanitario> protocolosSanitariosListFiltered;
-	private ProtocolosAdapterListener listener;
+	private final ProtocolosAdapterListener listener;
 
 	public ConsultaProtocoloSanitarioAdapter(ArrayList<ProtocoloSanitario> protocolos, ProtocolosAdapterListener listener) {
 		this.protocolosSanitariosList = protocolos;
@@ -25,6 +25,7 @@ public class ConsultaProtocoloSanitarioAdapter extends RecyclerView.Adapter<Cons
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public ProtocoloSanitarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_protocolo_sanitario, parent, false);
@@ -35,15 +36,21 @@ public class ConsultaProtocoloSanitarioAdapter extends RecyclerView.Adapter<Cons
 	public void onBindViewHolder(final ProtocoloSanitarioViewHolder holder, final int position) {
 		holder.tv_nome_protocolo.setText(protocolosSanitariosListFiltered.get(position).getNome_protocolo());
 
-		if (protocolosSanitariosListFiltered.get(position).getVacina_protocolo() != null)
-			holder.tv_qtd_vacina_protocolo.setText(" " + protocolosSanitariosListFiltered.get(position).getVacina_protocolo().size() + " ");
+		String qtd;
+
+		if (protocolosSanitariosListFiltered.get(position).getVacina_protocolo() != null) {
+			qtd = " " + protocolosSanitariosListFiltered.get(position).getVacina_protocolo().size() + " ";
+			holder.tv_qtd_vacina_protocolo.setText(qtd);
+		}
 		else
 			holder.tv_qtd_vacina_protocolo.setText(" 0 ");
 
 		holder.tv_desc_complementar_protocolo.setText(protocolosSanitariosListFiltered.get(position).getDesc_complementar_protocolo());
 
-		if (protocolosSanitariosListFiltered.get(position).getMedicamento_protocolo() != null)
-			holder.tv_qtd_medicamento_protocolo.setText(" " + protocolosSanitariosListFiltered.get(position).getMedicamento_protocolo().size() + " ");
+		if (protocolosSanitariosListFiltered.get(position).getMedicamento_protocolo() != null) {
+			qtd = " " + protocolosSanitariosListFiltered.get(position).getMedicamento_protocolo().size() + " ";
+			holder.tv_qtd_medicamento_protocolo.setText(qtd);
+		}
 		else
 			holder.tv_qtd_medicamento_protocolo.setText(" 0 ");
 	}
@@ -87,12 +94,6 @@ public class ConsultaProtocoloSanitarioAdapter extends RecyclerView.Adapter<Cons
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<ProtocoloSanitario> newlist) {
-		protocolosSanitariosList = newlist;
-		protocolosSanitariosListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

@@ -7,17 +7,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.R;
 import br.com.virtualbovapp.model.Vacina;
 
 public class ConsultaVacinaAdapter extends RecyclerView.Adapter<ConsultaVacinaAdapter.VacinaViewHolder> implements Filterable {
-	private ArrayList<Vacina> vacinasList;
+	private final ArrayList<Vacina> vacinasList;
 	private List<Vacina> vacinasListFiltered;
-	private VacinasAdapterListener listener;
+	private final VacinasAdapterListener listener;
 
 	public ConsultaVacinaAdapter(ArrayList<Vacina> vacinas, VacinasAdapterListener listener) {
 		this.vacinasList = vacinas;
@@ -25,6 +25,7 @@ public class ConsultaVacinaAdapter extends RecyclerView.Adapter<ConsultaVacinaAd
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public VacinaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_vacina, parent, false);
@@ -59,7 +60,7 @@ public class ConsultaVacinaAdapter extends RecyclerView.Adapter<ConsultaVacinaAd
 	}
 
 	public class VacinaViewHolder extends RecyclerView.ViewHolder {
-		TextView tv_nome_vacina, tv_desc_complementar_vacina, tv_capacidade_vacina;
+		TextView tv_nome_vacina, tv_desc_complementar_vacina;
 		RelativeLayout viewBackground;
         public RelativeLayout viewForeground;
 
@@ -77,12 +78,6 @@ public class ConsultaVacinaAdapter extends RecyclerView.Adapter<ConsultaVacinaAd
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Vacina> newlist) {
-		vacinasList = newlist;
-		vacinasListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

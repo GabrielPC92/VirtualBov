@@ -1,7 +1,5 @@
 package br.com.virtualbovapp.adapters;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,26 +8,25 @@ import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.model.Animal;
 import br.com.virtualbovapp.R;
 
 public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAdapter.AnimalViewHolder> implements Filterable {
-	private ArrayList<Animal> animaisList;
+	private final ArrayList<Animal> animaisList;
 	private List<Animal> animaisListFiltered;
-	private Activity activity;
-	private Intent intent;
+	private final AnimaisAdapterListener listener;
 
-	public ConsultaAnimalAdapter(Activity activity, ArrayList<Animal> layouts) {
-		this.animaisList = layouts;
-		this.animaisListFiltered = layouts;
-		this.activity = activity;
+	public ConsultaAnimalAdapter(ArrayList<Animal> animais, AnimaisAdapterListener listener) {
+		this.animaisList = animais;
+		this.animaisListFiltered = animais;
+		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public AnimalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_raca, parent, false);
@@ -38,7 +35,7 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 
 	@Override
 	public void onBindViewHolder(final AnimalViewHolder holder, final int position) {
-		holder.tv_brinco_animal.setText(String.valueOf(animaisListFiltered.get(position).getBrinco_animal()));
+		holder.tv_brinco_animal.setText(animaisListFiltered.get(position).getBrinco_animal());
 		holder.tv_nome_animal.setText(animaisListFiltered.get(position).getNome_animal());
 	}
 
@@ -75,20 +72,10 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 			itemView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					/*intent = new Intent(activity, CadastroAnimalActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.putExtra("_brinco_animal", animaisListFiltered.get(getAdapterPosition()).getBrinco_animal());
-					intent.putExtra("_modo", "UPD");
-					activity.startActivity(intent);*/
+					listener.onAnimalSelected(animaisListFiltered.get(getAdapterPosition()));
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Animal> newlist) {
-		animaisList = newlist;
-		animaisListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override
@@ -125,5 +112,9 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 				notifyDataSetChanged();
 			}
 		};
+	}
+
+	public interface AnimaisAdapterListener {
+		void onAnimalSelected(Animal animal);
 	}
 }

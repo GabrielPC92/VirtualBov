@@ -1,5 +1,3 @@
-
-
 package br.com.virtualbovapp.adapters;
 
 import android.view.LayoutInflater;
@@ -9,17 +7,18 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.virtualbovapp.R;
 import br.com.virtualbovapp.model.Local;
 
 public class ConsultaLocalAdapter extends RecyclerView.Adapter<ConsultaLocalAdapter.LocalViewHolder> implements Filterable {
-	private ArrayList<Local> locaisList;
+	private final ArrayList<Local> locaisList;
 	private List<Local> locaisListFiltered;
-	private LocaisAdapterListener listener;
+	private final LocaisAdapterListener listener;
 
 	public ConsultaLocalAdapter(ArrayList<Local> locais, LocaisAdapterListener listener) {
 		this.locaisList = locais;
@@ -27,6 +26,7 @@ public class ConsultaLocalAdapter extends RecyclerView.Adapter<ConsultaLocalAdap
 		this.listener = listener;
 	}
 
+	@NonNull
 	@Override
 	public LocalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_local, parent, false);
@@ -78,12 +78,6 @@ public class ConsultaLocalAdapter extends RecyclerView.Adapter<ConsultaLocalAdap
 				}
 			});
 		}
-	}
-
-	public void updateList(ArrayList<Local> newlist) {
-		locaisList = newlist;
-		locaisListFiltered = newlist;
-		this.notifyDataSetChanged();
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -19,67 +20,174 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.util.ArrayList;
 import br.com.virtualbovapp.activities.cadastros.CadastroAnimalActivity;
-import br.com.virtualbovapp.sqlite.BancoController;
 import br.com.virtualbovapp.adapters.ConsultaAnimalAdapter;
+import br.com.virtualbovapp.helpers.AnimalItemTouchHelper;
+import br.com.virtualbovapp.model.Animal;
 import br.com.virtualbovapp.R;
 import br.com.virtualbovapp.helpers.RVEmptyObserver;
-import br.com.virtualbovapp.helpers.AnimalItemTouchHelper;
 
-public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements AnimalItemTouchHelper.RecyclerItemTouchHelperListener {
+public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements AnimalItemTouchHelper.RecyclerItemTouchHelperListener, ConsultaAnimalAdapter.AnimaisAdapterListener {
     private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
     private ConsultaAnimalAdapter animaisAdapter;
     private Intent intent;
     private FloatingActionButton fab_novo;
-    private BancoController bc;
     private SearchView searchView;
-    private AlertDialog alerta;
     private ItemTouchHelper itemTouchHelper;
-    private ItemTouchHelper.SimpleCallback itemTouchHelperCallback;
     private TextView tv_title_empty;
+    private ArrayList<Animal> animais;
+    private DatabaseReference databaseReference;
+    private ChildEventListener childEventListener;
+    private static final String ROOT = "BD";
+    private static final String CHILDREN = "animal";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        carregaView();
+
+        personalizaView();
+
+        setAdapter();
+
+        carregaListaFirebase();
+
+        novoCadastro();
+    }
+
+    private void carregaView()
+    {
         setContentView(R.layout.consulta_activity);
 
         recyclerView = findViewById(R.id.recycler_view);
         tv_title_empty = findViewById(R.id.tv_title_empty);
         fab_novo = findViewById(R.id.fab_novo);
+    }
 
+    private void personalizaView()
+    {
         tv_title_empty.setText("Não temos nenhum animal cadastrado");
 
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        bc = new BancoController(getBaseContext());
-
-        setAdapter();
-
-        itemTouchHelperCallback = new AnimalItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new AnimalItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
 
+    private void setAdapter()
+    {
+        animais = new ArrayList<>();
+        animaisAdapter = new ConsultaAnimalAdapter(animais, this);
+        recyclerView.setAdapter(animaisAdapter);
+        animaisAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerView, tv_title_empty));
+    }
+
+    private void carregaListaFirebase()
+    {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(ROOT).child(CHILDREN);
+
+        if (childEventListener == null) {
+            childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        animais.add(snapshot.getValue(Animal.class));
+                        animaisAdapter.notifyDataSetChanged();
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getBaseContext(), "Falha a ler os dados. Tente novamente!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        Animal new_animal = snapshot.getValue(Animal.class);
+                        String key_animal = snapshot.getKey();
+
+                        for (int i = 0; i < animais.size(); i++) {
+                            Animal animal_aux = animais.get(i);
+
+                            if (animal_aux.getKey_animal().equals(key_animal)) {
+                                animais.set(i, new_animal);
+                                break;
+                            }
+                        }
+
+                        animaisAdapter.notifyDataSetChanged();
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getBaseContext(), "Falha a ler os dados na atualização. Tente novamente!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    try {
+                        String key_animal = snapshot.getKey();
+
+                        for (int i = 0; i < animais.size(); i++)
+                        {
+                            Animal animal_aux = animais.get(i);
+
+                            if (animal_aux.getKey_animal().equals(key_animal)){
+                                animais.remove(i);
+                                break;
+                            }
+                        }
+
+                        animaisAdapter.notifyDataSetChanged();
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getBaseContext(), "Falha a ler os dados na remoção. Tente novamente!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getBaseContext(), "Falha a ler os dados. Tente novamente!", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            };
+
+            databaseReference.addChildEventListener(childEventListener);
+        }
+    }
+
+    private void novoCadastro() {
         fab_novo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getBaseContext(), CadastroAnimalActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("_brinco_animal", "");
+                intent.putExtra("_animal", new Animal());
                 intent.putExtra("_modo", "INS");
                 startActivity(intent);
             }
         });
     }
-
+    
     @Override
     protected void onResume() {
         super.onResume();
-        bc = new BancoController(getBaseContext());
-        animaisAdapter.updateList(bc.carregaAnimais());
 
         if (searchView != null) {
             searchView.setQuery("", false);
@@ -94,6 +202,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
+        assert searchManager != null;
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -140,8 +249,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
         if (viewHolder instanceof ConsultaAnimalAdapter.AnimalViewHolder) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            String message =   "Excluir o animal "  +  animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal();
-            message += " - " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal() + "?";
+            String message =   "Excluir o animal "  +  animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal() + "?";
 
             builder.setTitle("Exclusão de animal");
             builder.setMessage(message);
@@ -149,20 +257,17 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
             builder.setPositiveButton("EXCLUIR", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     //if (bc.animalMovimentado(animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal()) == false) {
-                        String messageToast =   "Animal " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal();
-                        messageToast += " - " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal();
+                        String messageToast =   "Animal " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal();
                         messageToast += " foi excluído com sucesso!";
 
-                        bc.deletaAnimal(animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal());
-                        animaisAdapter.removeItem(viewHolder.getAdapterPosition());
+                        DatabaseReference databaseReferenceDel = FirebaseDatabase.getInstance().getReference().child(ROOT).child(CHILDREN).child(animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getKey_animal());
+                        databaseReferenceDel.removeValue();
 
                         Toast.makeText(getBaseContext(), messageToast, Toast.LENGTH_LONG).show();
                     //}
                     //else
                         //Toast.makeText(getBaseContext(), "Animal não pode ser deletado pois já possui movimentação!", Toast.LENGTH_LONG).show();
-
-                    setAdapter();
-
+                    
                     if (searchView != null) {
                         searchView.setQuery("", false);
                         searchView.clearFocus();
@@ -179,7 +284,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
                 }
             });
 
-            alerta = builder.create();
+            AlertDialog alerta = builder.create();
             alerta.show();
             alerta.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
@@ -190,11 +295,22 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
             });
         }
     }
+    
+    @Override
+    public void onAnimalSelected(Animal animal) {
+        intent = new Intent(this, CadastroAnimalActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("_animal", animal);
+        intent.putExtra("_modo", "UPD");
+        startActivity(intent);
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-    public void setAdapter()
-    {
-        animaisAdapter = new ConsultaAnimalAdapter(this, bc.carregaAnimais());
-        recyclerView.setAdapter(animaisAdapter);
-        animaisAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerView, tv_title_empty));
+        if (childEventListener != null) {
+            databaseReference.removeEventListener(childEventListener);
+        }
     }
 }
