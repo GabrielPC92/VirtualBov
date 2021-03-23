@@ -249,7 +249,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
         if (viewHolder instanceof ConsultaAnimalAdapter.AnimalViewHolder) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            String message =   "Excluir o animal "  +  animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal() + "?";
+            String message =   "Excluir o animal "  +  animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal() + "?";
 
             builder.setTitle("Exclusão de animal");
             builder.setMessage(message);
@@ -257,7 +257,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
             builder.setPositiveButton("EXCLUIR", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     //if (bc.animalMovimentado(animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal()) == false) {
-                        String messageToast =   "Animal " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getNome_animal();
+                        String messageToast =   "Animal " + animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getBrinco_animal();
                         messageToast += " foi excluído com sucesso!";
 
                         DatabaseReference databaseReferenceDel = FirebaseDatabase.getInstance().getReference().child(ROOT).child(CHILDREN).child(animaisAdapter.getList().get(viewHolder.getAdapterPosition()).getKey_animal());

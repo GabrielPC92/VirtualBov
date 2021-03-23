@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Animal implements Parcelable {
-    private String key_animal, brinco_animal, nome_animal, data_nascimento_animal, sexo_animal, sisbov_animal, data_bnd_animal, nome_pai_animal,
+    private String key_animal, brinco_animal, data_nascimento_animal, sexo_animal, sisbov_animal, data_bnd_animal, nome_pai_animal,
             nome_mae_animal, desmame_animal, morte_animal;
     private Raca raca_animal;
     private float pesagem_animal;
@@ -18,14 +18,6 @@ public class Animal implements Parcelable {
 
     public void setBrinco_animal(String brinco_animal) {
         this.brinco_animal = brinco_animal;
-    }
-
-    public String getNome_animal() {
-        return nome_animal;
-    }
-
-    public void setNome_animal(String nome_animal) {
-        this.nome_animal = nome_animal;
     }
 
     public String getData_nascimento_animal() {
@@ -119,7 +111,6 @@ public class Animal implements Parcelable {
     protected Animal(Parcel in) {
         key_animal = in.readString();
         brinco_animal = in.readString();
-        nome_animal = in.readString();
         data_nascimento_animal = in.readString();
         sexo_animal = in.readString();
         sisbov_animal = in.readString();
@@ -153,7 +144,6 @@ public class Animal implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(key_animal);
         dest.writeString(brinco_animal);
-        dest.writeString(nome_animal);
         dest.writeString(data_nascimento_animal);
         dest.writeString(sexo_animal);
         dest.writeString(sisbov_animal);

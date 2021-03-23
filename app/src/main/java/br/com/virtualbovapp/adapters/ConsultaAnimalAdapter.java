@@ -29,14 +29,13 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 	@NonNull
 	@Override
 	public AnimalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_raca, parent, false);
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consulta_item_animal, parent, false);
 		return new AnimalViewHolder(view);
 	}
 
 	@Override
 	public void onBindViewHolder(final AnimalViewHolder holder, final int position) {
 		holder.tv_brinco_animal.setText(animaisListFiltered.get(position).getBrinco_animal());
-		holder.tv_nome_animal.setText(animaisListFiltered.get(position).getNome_animal());
 	}
 
 	@Override
@@ -58,14 +57,13 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 	}
 
 	public class AnimalViewHolder extends RecyclerView.ViewHolder {
-		TextView tv_brinco_animal, tv_nome_animal;
+		TextView tv_brinco_animal;
 		RelativeLayout viewBackground;
         public RelativeLayout viewForeground;
 
 		public AnimalViewHolder(View itemView) {
 			super(itemView);
 			tv_brinco_animal = itemView.findViewById(R.id.tv_brinco_animal);
-			tv_nome_animal = itemView.findViewById(R.id.tv_nome_animal);
 			viewBackground = itemView.findViewById(R.id.view_background);
 			viewForeground = itemView.findViewById(R.id.view_foreground);
 
@@ -91,8 +89,7 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 					List<Animal> filteredList = new ArrayList<>();
 					for (Animal row : animaisList)
 					{
-						if (row.getBrinco_animal().toLowerCase().contains(charString.toLowerCase()) ||
-								row.getNome_animal().toLowerCase().contains(charString.toLowerCase()))
+						if (row.getBrinco_animal().toLowerCase().contains(charString.toLowerCase()))
 						{
 							filteredList.add(row);
 						}

@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +26,11 @@ import br.com.virtualbovapp.model.Animal;
 
 public class CadastroAnimalActivity extends AppCompatActivity {
     private EditText ed_brinco_animal, ed_data_nascimento_animal;
-    //private ChipGroup cg_sexo_animal;
+    private RadioButton rb_sexo_masculino, rb_sexo_feminino;
+    private RadioButton rb_seleciotion;
+    private RadioGroup rg_sexo;
     private ImageButton ib_data_nascimento_animal;
+    private TextView tv_title_sexo_animal;
     private String _modo;
     private Animal _animal;
     private int mYear, mMonth, mDay;
@@ -63,13 +69,17 @@ public class CadastroAnimalActivity extends AppCompatActivity {
         ed_brinco_animal = findViewById(R.id.ed_brinco_animal);
         ed_data_nascimento_animal = findViewById(R.id.ed_data_nascimento_animal);
         ib_data_nascimento_animal = findViewById(R.id.ib_data_nascimento_animal);
-        //cg_sexo_animal = findViewById(R.id.cg_sexo_animal);
+        rb_sexo_masculino = findViewById(R.id.rb_sexo_masculino);
+        rb_sexo_feminino = findViewById(R.id.rb_sexo_feminino);
+        rg_sexo = findViewById(R.id.rg_sexo);
+        tv_title_sexo_animal = findViewById(R.id.tv_title_sexo_animal);
     }
 
     private void personalizaView()
     {
         ed_brinco_animal.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         ed_data_nascimento_animal.setEnabled(false);
+        rg_sexo.clearCheck();
 
         if(_modo.equals("UPD"))
             ed_brinco_animal.setEnabled(false);
@@ -79,6 +89,16 @@ public class CadastroAnimalActivity extends AppCompatActivity {
     {
         ed_brinco_animal.setText(animal.getBrinco_animal());
         ed_data_nascimento_animal.setText(animal.getData_nascimento_animal());
+
+        switch (animal.getSexo_animal()){
+            case "Masculino":
+                rg_sexo.check(R.id.rb_sexo_masculino);
+                break;
+
+            case "Feminino":
+                rg_sexo.check(R.id.rb_sexo_feminino);
+                break;
+        }
     }
 
     private void selecaoDatas() {
@@ -133,20 +153,26 @@ public class CadastroAnimalActivity extends AppCompatActivity {
             else {
                 String strDataNascimento;
                 String strDataHoje;
-                Date dataFabricacao;
+                Date dataNascimento;
                 Date dataHoje;
                 Calendar c = Calendar.getInstance();
 
                 strDataNascimento = ed_data_nascimento_animal.getText().toString();
                 strDataHoje = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR);
 
-                dataFabricacao = stringToDate(strDataNascimento);
+                dataNascimento = stringToDate(strDataNascimento);
                 dataHoje = stringToDate(strDataHoje);
 
-                if (dataFabricacao.compareTo(dataHoje) > 0)
+                if (dataNascimento.compareTo(dataHoje) > 0)
                     ed_data_nascimento_animal.setError("Data de nascimento deve ser menor ou igual a data de hoje!");
-                else
-                    validacao = true;
+                else {
+                    if (rg_sexo.getCheckedRadioButtonId() == -1)
+                        tv_title_sexo_animal.setError("Informe o sexo do animal!");
+                    else {
+                        rb_seleciotion = rg_sexo.findViewById(rg_sexo.getCheckedRadioButtonId());
+                        validacao = true;
+                    }
+                }
             }
         }
 
@@ -163,6 +189,7 @@ public class CadastroAnimalActivity extends AppCompatActivity {
             Animal animal = new Animal();
             animal.setBrinco_animal(ed_brinco_animal.getText().toString());
             animal.setData_nascimento_animal(ed_data_nascimento_animal.getText().toString());
+            animal.setSexo_animal(rb_seleciotion.getText().toString());
             animal.setKey_animal(key_animal);
 
             assert key_animal != null;
@@ -184,6 +211,7 @@ public class CadastroAnimalActivity extends AppCompatActivity {
             Animal animal = new Animal();
             animal.setBrinco_animal(ed_brinco_animal.getText().toString());
             animal.setData_nascimento_animal(ed_data_nascimento_animal.getText().toString());
+            animal.setSexo_animal(rb_seleciotion.getText().toString());
             animal.setKey_animal(key_animal);
 
             databaseReference.setValue(animal);
