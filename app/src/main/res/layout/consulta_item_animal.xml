@@ -63,25 +63,6 @@
                     android:layout_height="wrap_content"
                     android:text="G1L5" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_title_nome_animal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nome: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_nome_animal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="FRAZÃO" />
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>
