@@ -14,4 +14,5 @@
     <color name="localizacao">#5A6978</color>
     <color name="black">#000000</color>
     <color name="cinza_claro">#EDEDED</color>
+    <color name="cinza_escuro">#343f4b</color>
 </resources>

@@ -4,19 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Raca implements Parcelable {
-    private int id_raca, origem_raca;
+    private int origem_raca;
     private String nome_raca, key_raca;
     private boolean padrao_raca;
 
     public Raca() {
     }
 
-    public int getId_raca() {
-        return id_raca;
-    }
-
-    public void setId_raca(int id_raca) {
-        this.id_raca = id_raca;
+    public Raca(int origem_raca, String nome_raca, String key_raca, boolean padrao_raca) {
+        this.origem_raca = origem_raca;
+        this.nome_raca = nome_raca;
+        this.key_raca = key_raca;
+        this.padrao_raca = padrao_raca;
     }
 
     public int getOrigem_raca() {
@@ -52,7 +51,6 @@ public class Raca implements Parcelable {
     }
 
     protected Raca(Parcel in) {
-        id_raca = in.readInt();
         origem_raca = in.readInt();
         nome_raca = in.readString();
         key_raca = in.readString();
@@ -78,7 +76,6 @@ public class Raca implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id_raca);
         dest.writeInt(origem_raca);
         dest.writeString(nome_raca);
         dest.writeString(key_raca);

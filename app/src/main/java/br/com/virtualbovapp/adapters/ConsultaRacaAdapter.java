@@ -90,8 +90,7 @@ public class ConsultaRacaAdapter extends RecyclerView.Adapter<ConsultaRacaAdapte
 					List<Raca> filteredList = new ArrayList<>();
 					for (Raca row : racasList)
 					{
-						if (String.valueOf(row.getId_raca()).contentEquals(charSequence) ||
-								row.getNome_raca().toLowerCase().contains(charString.toLowerCase()))
+						if (row.getNome_raca().toLowerCase().contains(charString.toLowerCase()))
 						{
 							filteredList.add(row);
 						}

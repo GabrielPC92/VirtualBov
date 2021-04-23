@@ -1,10 +1,12 @@
 package br.com.virtualbovapp.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,11 +21,13 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 	private final ArrayList<Animal> animaisList;
 	private List<Animal> animaisListFiltered;
 	private final AnimaisAdapterListener listener;
+	private final Context context;
 
-	public ConsultaAnimalAdapter(ArrayList<Animal> animais, AnimaisAdapterListener listener) {
+	public ConsultaAnimalAdapter(ArrayList<Animal> animais, AnimaisAdapterListener listener, Context context) {
 		this.animaisList = animais;
 		this.animaisListFiltered = animais;
 		this.listener = listener;
+		this.context = context;
 	}
 
 	@NonNull
@@ -35,7 +39,32 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 
 	@Override
 	public void onBindViewHolder(final AnimalViewHolder holder, final int position) {
+		if(animaisListFiltered.get(position).getSexo_animal().equals("Masculino")) {
+			holder.iv_sexo_animal.setImageResource(R.drawable.ic_male);
+			holder.iv_sexo_animal.setColorFilter(context.getResources().getColor(R.color.sex_male));
+			holder.tv_desc_sexo_animal.setText("Macho");
+		}
+		else {
+			holder.iv_sexo_animal.setImageResource(R.drawable.ic_female);
+			holder.iv_sexo_animal.setColorFilter(context.getResources().getColor(R.color.sex_female));
+			holder.tv_desc_sexo_animal.setText("Fêmea");
+		}
+
 		holder.tv_brinco_animal.setText(animaisListFiltered.get(position).getBrinco_animal());
+		holder.iv_local_animal.setImageResource(R.drawable.ic_localizacao);
+		holder.tv_nome_local_animal.setText("NOME DO LOCAL");
+		holder.tv_pesagem_animal.setText(animaisListFiltered.get(position).getPesagem_animal() + " Kg");
+		holder.tv_nome_lote_animal.setText("NOME DO LOTE");
+		holder.tv_peso_gmd_animal.setText("1,48 Kg/GMD");
+
+
+		if(animaisListFiltered.get(position).getMorte_animal().length() > 0)
+			holder.tv_vivo_morto_animal.setText(" Morto ");
+		else
+			holder.tv_vivo_morto_animal.setText(" Vivo ");
+
+		holder.tv_preenhe_animal.setText(" Preenhe ");
+		holder.tv_estrategia_animal.setText(" Pasto ");
 	}
 
 	@Override
@@ -57,13 +86,25 @@ public class ConsultaAnimalAdapter extends RecyclerView.Adapter<ConsultaAnimalAd
 	}
 
 	public class AnimalViewHolder extends RecyclerView.ViewHolder {
-		TextView tv_brinco_animal;
+		TextView tv_brinco_animal, tv_nome_local_animal, tv_pesagem_animal, tv_desc_sexo_animal, tv_nome_lote_animal, tv_peso_gmd_animal, tv_vivo_morto_animal, tv_preenhe_animal, tv_estrategia_animal;
+		ImageView iv_sexo_animal, iv_local_animal;
 		RelativeLayout viewBackground;
         public RelativeLayout viewForeground;
 
 		public AnimalViewHolder(View itemView) {
 			super(itemView);
 			tv_brinco_animal = itemView.findViewById(R.id.tv_brinco_animal);
+			iv_sexo_animal = itemView.findViewById(R.id.iv_sexo_animal);
+			iv_local_animal = itemView.findViewById(R.id.iv_local_animal);
+			tv_nome_local_animal = itemView.findViewById(R.id.tv_nome_local_animal);
+			tv_pesagem_animal = itemView.findViewById(R.id.tv_pesagem_animal);
+			tv_desc_sexo_animal = itemView.findViewById(R.id.tv_desc_sexo_animal);
+			tv_nome_lote_animal = itemView.findViewById(R.id.tv_nome_lote_animal);
+			tv_peso_gmd_animal = itemView.findViewById(R.id.tv_peso_gmd_animal);
+			tv_vivo_morto_animal = itemView.findViewById(R.id.tv_vivo_morto_animal);
+			tv_preenhe_animal = itemView.findViewById(R.id.tv_preenhe_animal);
+			tv_estrategia_animal = itemView.findViewById(R.id.tv_estrategia_animal);
+
 			viewBackground = itemView.findViewById(R.id.view_background);
 			viewForeground = itemView.findViewById(R.id.view_foreground);
 

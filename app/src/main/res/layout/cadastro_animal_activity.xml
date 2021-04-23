@@ -21,6 +21,17 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/tv_dados_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cinza_escuro"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                android:layout_marginBottom="@dimen/padd_10"
+                android:text=" Dados do Animal"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/tv_title_brinco_animal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,6 +100,212 @@
                     android:text="Feminino"
                     android:checked="false" />
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_registro_sisbov_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cinza_escuro"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/padd_10"
+                android:layout_marginBottom="@dimen/padd_10"
+                android:text=" Registro no SISBOV"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_title_sisbov_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Identificação"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/ed_sisbov_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o registro sisbov do animal" />
+
+            <TextView
+                android:id="@+id/tv_title_data_bnd_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data do BND"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_data_bnd_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Selecione a data" />
+
+                <ImageButton
+                    android:id="@+id/ib_data_bnd_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_action_date_range"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_linhagem_genetica_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cinza_escuro"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/padd_10"
+                android:layout_marginBottom="@dimen/padd_10"
+                android:text=" Linha Genética"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_nome_pai_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pai"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/ed_nome_pai_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o nome do pai do animal" />
+
+            <TextView
+                android:id="@+id/tv_nome_mae_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mãe"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/ed_nome_mae_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o nome da mãe do animal" />
+
+            <TextView
+                android:id="@+id/tv_title_raca_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Raça"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_raca_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Selecione a raça do animal" />
+
+                <ImageButton
+                    android:id="@+id/ib_pesquisa_raca_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_action_search"
+                    android:background="@android:color/transparent"
+                    app:tint="#FF6D00"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_dados_estrategicos_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cinza_escuro"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/padd_10"
+                android:layout_marginBottom="@dimen/padd_10"
+                android:text=" Dados Estratégicos"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_pesagem_inicial_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Primeira Pesagem"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/ed_pesagem_inicial_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Digite a pesagem inicial do animal" />
+
+            <TextView
+                android:id="@+id/tv_ciclos_vida_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cinza_escuro"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/padd_10"
+                android:layout_marginBottom="@dimen/padd_10"
+                android:text=" Ciclos de Vida"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_title_data_desmame_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data de Desmame"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_data_desmame_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Selecione a data" />
+
+                <ImageButton
+                    android:id="@+id/ib_data_desmame_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_action_date_range"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title_data_morte_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data da Morte"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_data_morte_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Selecione a data" />
+
+                <ImageButton
+                    android:id="@+id/ib_data_morte_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_action_date_range"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

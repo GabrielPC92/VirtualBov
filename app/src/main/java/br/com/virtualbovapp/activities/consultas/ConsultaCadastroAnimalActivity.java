@@ -87,7 +87,7 @@ public class ConsultaCadastroAnimalActivity extends AppCompatActivity implements
     private void setAdapter()
     {
         animais = new ArrayList<>();
-        animaisAdapter = new ConsultaAnimalAdapter(animais, this);
+        animaisAdapter = new ConsultaAnimalAdapter(animais, this, this);
         recyclerView.setAdapter(animaisAdapter);
         animaisAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerView, tv_title_empty));
     }

@@ -5,9 +5,8 @@ import android.os.Parcelable;
 
 public class Animal implements Parcelable {
     private String key_animal, brinco_animal, data_nascimento_animal, sexo_animal, sisbov_animal, data_bnd_animal, nome_pai_animal,
-            nome_mae_animal, desmame_animal, morte_animal;
+            nome_mae_animal, pesagem_animal, desmame_animal, morte_animal;
     private Raca raca_animal;
-    private float pesagem_animal;
 
     public Animal() {
     }
@@ -92,11 +91,11 @@ public class Animal implements Parcelable {
         this.raca_animal = raca_animal;
     }
 
-    public float getPesagem_animal() {
+    public String getPesagem_animal() {
         return pesagem_animal;
     }
 
-    public void setPesagem_animal(float pesagem_animal) {
+    public void setPesagem_animal(String pesagem_animal) {
         this.pesagem_animal = pesagem_animal;
     }
 
@@ -120,7 +119,7 @@ public class Animal implements Parcelable {
         desmame_animal = in.readString();
         morte_animal = in.readString();
         raca_animal = in.readParcelable(Raca.class.getClassLoader());
-        pesagem_animal = in.readFloat();
+        pesagem_animal = in.readString();
     }
 
     public static final Creator<Animal> CREATOR = new Creator<Animal>() {
@@ -153,6 +152,6 @@ public class Animal implements Parcelable {
         dest.writeString(desmame_animal);
         dest.writeString(morte_animal);
         dest.writeParcelable(raca_animal, flags);
-        dest.writeFloat(pesagem_animal);
+        dest.writeString(pesagem_animal);
     }
 }

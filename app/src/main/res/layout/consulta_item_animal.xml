@@ -45,24 +45,122 @@
             android:orientation="vertical"
             android:layout_centerVertical="true">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
 
-                <TextView
-                    android:id="@+id/tv_title_brinco_animal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Brinco: "
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/iv_sexo_animal"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"/>
 
                 <TextView
                     android:id="@+id/tv_brinco_animal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="G1L5" />
-            </LinearLayout>
+                    android:layout_toRightOf="@id/iv_sexo_animal"
+                    android:layout_marginLeft="5dp"
+                    android:text="TESTE"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerInParent="true">
+
+                  <ImageView
+                      android:id="@+id/iv_local_animal"
+                      android:layout_width="20dp"
+                      android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_nome_local_animal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="NOME DO LOCAL"
+                        android:textColor="#4988C6"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_pesagem_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="428 Kg"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#4988C6"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
+
+                <TextView
+                    android:id="@+id/tv_desc_sexo_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fêmea"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="#4988C6"/>
+
+                <TextView
+                    android:id="@+id/tv_nome_lote_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NOME DO LOTE"
+                    android:layout_centerInParent="true"
+                    android:textColor="#4988C6"/>
+
+                <TextView
+                    android:id="@+id/tv_peso_gmd_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,48 Kg/GMD"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#4988C6"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
+
+                <TextView
+                    android:id="@+id/tv_vivo_morto_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Vivo  "
+                    android:layout_alignParentLeft="true"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/borda_arredondada"
+                    android:backgroundTint="#969FAA"/>
+
+                <TextView
+                    android:id="@+id/tv_preenhe_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Preenhe  "
+                    android:layout_centerInParent="true"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/borda_arredondada"
+                    android:backgroundTint="#F95F62"/>
+
+                <TextView
+                    android:id="@+id/tv_estrategia_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Pasto  "
+                    android:layout_alignParentRight="true"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/borda_arredondada" />
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>
